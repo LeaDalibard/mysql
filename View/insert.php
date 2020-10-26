@@ -1,4 +1,4 @@
-
+<?php require 'includes/header.php'?>
 <!doctype html>
 <html lang="en">
 <head>

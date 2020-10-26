@@ -1,10 +1,9 @@
-
 <?php require 'includes/header.php'?>
 
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Profile</title>
+    <title>Login</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,20 +14,10 @@
 </head>
 <body>
 
-<section class="container">
 
-    <div class="d-flex justify-content-center">
-        <img class="my-3 w-25 rounded-circle text-center p-2" src="../resources/profile-picture.png" alt="Profile picture">
-    </div>
-    <div class="media-body text-center">
-        <h5 class="mt-0">Name</h5>
-        <p>email</p>
-    </div>
-    <!-- <p><a href="index.php?page=profile">To profile page</a></p> -->
 
-    </section>
 
-    <!-- Optional JavaScript -->
+<!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
