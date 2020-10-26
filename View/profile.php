@@ -21,8 +21,8 @@
         <img class="my-3 w-25 rounded-circle text-center p-2" src="../resources/profile-picture.png" alt="Profile picture">
     </div>
     <div class="media-body text-center">
-        <h5 class="mt-0">Name</h5>
-        <p>email</p>
+        <h5 class="mt-0"><?php echo $_SESSION["first_name"]." ".$_SESSION["last_name"]; ?></h5>
+        <p><?php echo $_SESSION["email"]; ?></p>
     </div>
     <!-- <p><a href="index.php?page=profile">To profile page</a></p> -->
 

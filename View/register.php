@@ -13,19 +13,28 @@
 </head>
 <body>
 
-<span class="error  text-danger"><?php if(isset($message)){echo $message;};?></span>
+
 
 <section class="container">
+    <h2> Register</h2>
+    <span class="error  text-danger"><?php if(isset($message)){echo $message;};?></span>
     <form action="index.php" method="post">
         <p><span class="error text-danger">* required field</span></p>
-        <p>First name : <input type="text" name="first_name" /> <span class="error text-danger">*</span>
+        <p><b>First name</b> : <input type="text" name="first_name" value="<?php echo $_SESSION["first_name"]; ?>" /> <span class="error text-danger">*</span>
         </p>
-        <p>Last name : <input type="text" name="last_name" /> <span class="error text-danger">*</span>
+        <p><b>Last name</b> : <input type="text" name="last_name"  value="<?php echo $_SESSION["last_name"]; ?>"/> <span class="error text-danger">*</span>
         </p>
-        <p>Email : <input type="text" name="email" /> <span class="error text-danger">*</span></p>
+        <p><b>Email : </b><input type="text" name="email" value="<?php echo $_SESSION["email"]; ?>"/> <span class="error text-danger">*</span></p>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+        <span class="error text-danger">*</span></p>
+        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+        <span class="error text-danger">*</span></p>
+        <hr>
 
 
-        <p><input type="submit" value="OK"></p>
+        <p><input type="submit" value="Register"></p>
     </form>
 
 
