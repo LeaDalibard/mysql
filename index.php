@@ -15,7 +15,7 @@ require 'Model/StudentsLoader.php';
 //include all your controllers here
 require 'Controller/HomepageController.php';
 require 'Controller/InsertController.php';
-
+require 'Controller/ProfileController.php';
 
 
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
