@@ -34,7 +34,7 @@
         <hr>
 
 
-        <p><input type="submit" value="Register"></p>
+        <p><input type="submit" name="register"></p>
     </form>
 
 

@@ -14,9 +14,11 @@
 
 <header class="mb-5">
 
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="index.php">Home</a>
-    </nav>
+    <form method="post" action="index.php">
+        <button type="submit" name="home" value="home" class="btn btn-primary">Homepage</button>
+    </form>
+
+
 
 </header>
 

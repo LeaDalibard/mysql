@@ -1,7 +1,7 @@
 
 <?php
 
-class InsertController
+class RegisterController
 {
     //render function with both $_GET and $_POST vars available if it would be needed.
     public function render(array $GET, array $POST)
@@ -26,6 +26,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 
-        require 'View/insert.php';
+        require 'View/auth.php';
     }
 }
