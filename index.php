@@ -29,8 +29,10 @@ if(isset($_SESSION['valid']) && $_SESSION['valid'] == true) {
     $controller = new ProfileController();
 }
 
-if(isset($_SESSION['login']) && $_SESSION['login'] == true) {
-    $controller = new ProfileController();
+if(isset($_POST['login']) && isset($_SESSION['login'])){
+    if($_SESSION['login'] == true) {$controller = new ProfileController();
+    }
+    else {unset($_SESSION['login']);}
 }
 
 if(isset($_POST['home'])) {
