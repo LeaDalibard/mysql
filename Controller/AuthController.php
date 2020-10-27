@@ -49,49 +49,54 @@ class AuthController
                 $_SESSION["last_name"] = $_POST['last_name'];
                 $_SESSION["email"] = $_POST['email'];
                 $message = 'Please fill all the required field';
-            } else {
-                //-----------------------------------Check if email valid
+            }
+            //-----------------------------------Check if email valid
+
+            if (!empty($_POST['email'])) {
                 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                     $_SESSION["first_name"] = $_POST['first_name'];
                     $_SESSION["last_name"] = $_POST['last_name'];
                     $message = "Email is not a valid email address";
-                } else {
-                    //-----------------------------------    Check if password and password confirm are equal
-                    if ($_POST['psw'] != $_POST['psw-repeat']) {
-                        $_SESSION["first_name"] = $_POST['first_name'];
-                        $_SESSION["last_name"] = $_POST['last_name'];
-                        $_SESSION["email"] = $_POST['email'];
-                        $message = "Password and Password confirm do not match, please enter your password again";
-                    } else {
-                        $handle = $pdo->prepare('INSERT INTO student (first_name, last_name, email,created_at,password) VALUES (:first_name, :last_name, :email,:created_at, :password)');
-                        $handle->bindValue(':first_name', $_POST['first_name']);
-                        $handle->bindValue(':last_name', $_POST['last_name']);
-                        $handle->bindValue(':email', $_POST['email']);
-                        $handle->bindValue(':created_at', date('Y-m-d H:i'));
-                        $handle->bindValue(':password', password_hash($_POST['psw'], PASSWORD_DEFAULT));
-                        $handle->execute();
-                        $_SESSION["first_name"] = $_POST['first_name'];
-                        $_SESSION["last_name"] = $_POST['last_name'];
-                        $_SESSION["email"] = $_POST['email'];
-                        $_SESSION['valid'] = true;
-                    }
+                }
+            }
+            //-----------------------------------    Check if password and password confirm are equal
+
+            if (!empty($_POST['psw']) && !empty($_POST['psw-repeat']) ){
+                if ($_POST['psw'] != $_POST['psw-repeat']) {
+                    $message = "Password and Password confirm do not match, please enter your password again";
                 }
             }
 
         }
 
+        if (isset($_POST['register']) && $message == "") {
+            $handle = $pdo->prepare('INSERT INTO student (first_name, last_name, email,created_at,password) VALUES (:first_name, :last_name, :email,:created_at, :password)');
+            $handle->bindValue(':first_name', $_POST['first_name']);
+            $handle->bindValue(':last_name', $_POST['last_name']);
+            $handle->bindValue(':email', $_POST['email']);
+            $handle->bindValue(':created_at', date('Y-m-d H:i'));
+            $handle->bindValue(':password', password_hash($_POST['psw'], PASSWORD_DEFAULT));
+            $handle->execute();
+            $_SESSION["first_name"] = $_POST['first_name'];
+            $_SESSION["last_name"] = $_POST['last_name'];
+            $_SESSION["email"] = $_POST['email'];
+            $_SESSION['valid'] = true;
+            header('Location: index.php');
+            exit();
+        }
+
 
         //-----------------------------------LOGIN
+        $messagelogin = "";
 
-        if (isset($_POST['login'])) {
-            $_SESSION['login'] = true;
-            //-------Check if the filled in email can be found on a user with that credential
-            if(empty($_POST['username']) || empty ($_POST['loginpsw'])){
-                $_SESSION['login'] = false;
-            }
-            if (isset($_POST['username'])) {
+
+        //-------Check if the filled in email can be found on a user with that credential
+        $_SESSION['valid'] == true;
+
+        if (isset ($_POST['login'])) {
+            if (!empty($_POST['username'])) {
                 foreach ($students->getStudents() as $student) {
-                    if ($student->getEmail() == $_POST['username']) {
+                    if ($student->getEmail() == $_POSTgi['username']) {
                         $_SESSION["username"] = $_POST['username'];
                         $_SESSION["loginpsw"] = $student->getPassword();
                         $_SESSION["first_name"] = $student->getFirstname();
@@ -110,6 +115,11 @@ class AuthController
                     $messagelogin = 'Something went wrong';
                     $_SESSION['login'] = false;
                 }
+            }
+            if(empty($messagelogin)){
+                $_SESSION['login'] = true;
+                header('Location: index.php');
+                exit();
             }
         }
 

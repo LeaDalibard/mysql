@@ -22,23 +22,22 @@ require 'Controller/LoginController.php';
 require 'Controller/AuthController.php';
 
 
+$controller = new AuthController();
 
-$controller= new AuthController();
-
-if(isset($_SESSION['valid']) && $_SESSION['valid'] == true) {
+if (isset($_SESSION['valid']) && $_SESSION['valid'] == true) {
     $controller = new ProfileController();
 }
 
-if(isset($_POST['login']) && isset($_SESSION['login'])){
-    if($_SESSION['login'] == true) {$controller = new ProfileController();
-    }
-    else {unset($_SESSION['login']);}
+
+if (isset($_SESSION['login']) && $_SESSION['login'] != false) {
+    $controller = new ProfileController();
 }
 
-if(isset($_POST['home'])) {
+
+if (isset($_POST['home'])) {
     session_destroy();
     session_start();
-$controller = new AuthController();
+    $controller = new AuthController();
 }
 
 var_dump($_SESSION);
