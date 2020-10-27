@@ -1,4 +1,4 @@
-<?php require 'includes/header.php'?>
+<?php require 'includes/header.php' ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,35 +14,53 @@
 <body>
 
 
-
 <section class="container">
     <h2> Register</h2>
-    <span class="error  text-danger"><?php if(isset($message)){echo $message;};?></span>
+    <span class="error  text-danger"><?php if (isset($message)) {
+            echo $message;
+        }; ?></span>
+
     <form action="index.php" method="post">
         <p><span class="error text-danger">* required field</span></p>
-        <p><b>First name</b> : <input type="text" name="first_name" value="<?php echo $_SESSION["first_name"]; ?>" /> <span class="error text-danger">*</span>
+        <p><b>First name</b> : <input type="text" name="first_name" value="<?php echo $_SESSION["first_name"]; ?>" required>
+            <span class="error text-danger">*</span>
         </p>
-        <p><b>Last name</b> : <input type="text" name="last_name"  value="<?php echo $_SESSION["last_name"]; ?>"/> <span class="error text-danger">*</span>
+        <p><b>Last name</b> : <input type="text" name="last_name" value="<?php echo $_SESSION["last_name"]; ?>"required> <span
+                    class="error text-danger">*</span>
         </p>
-        <p><b>Email : </b><input type="text" name="email" value="<?php echo $_SESSION["email"]; ?>"/> <span class="error text-danger">*</span></p>
-        <label for="psw"><b>Password</b></label>
+        <p><b>Email : </b><input type="text" name="email" value="<?php echo $_SESSION["email"]; ?>"required> <span
+                    class="error text-danger">*</span></p>
+        <label for="psw"><b>Password :</b></label>
         <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
         <span class="error text-danger">*</span></p>
-        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <label for="psw-repeat"><b>Repeat Password :</b></label>
         <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
         <span class="error text-danger">*</span></p>
         <hr>
-
-
         <p><input type="submit" name="register"></p>
     </form>
 
 
+    <div>
+        <h2> Login </h2>
+        <span class="error  text-danger"><?php if (isset($messagelogin)) {
+                echo $messagelogin;
+            }; ?></span>
+        <form class="form-signin" role="form"
+              action="index.php" method="post">
+            <h4 class="form-signin-heading"></h4>
+            <p><b>Username : </b><input type="text" name="username" value=""/> </p>
+            <label for="psw"><b>Password :</b></label>
+            <input type="password" placeholder="Enter Password" name="loginpsw" id="loginpsw" required>
+            <hr>
+            <p><input type="submit" name="login" value="Login"></p>
+        </form>
+
+
+
+    </div>
+
 </section>
-
-
-
-
 
 
 <!-- Optional JavaScript -->

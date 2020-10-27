@@ -4,7 +4,8 @@
 class Student
 {
     private int $id;
-    private string $first_name,$last_name,$email, $created_at, $password;
+    private string $first_name,$last_name,$email, $created_at;
+    private $password;
 
 
     public function __construct($id, $first_name, $last_name,$email, $created_at,$password)

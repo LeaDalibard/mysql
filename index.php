@@ -29,6 +29,10 @@ if(isset($_SESSION['valid']) && $_SESSION['valid'] == true) {
     $controller = new ProfileController();
 }
 
+if(isset($_SESSION['login']) && $_SESSION['login'] == true) {
+    $controller = new ProfileController();
+}
+
 if(isset($_POST['home'])) {
     session_destroy();
     session_start();
