@@ -14,7 +14,7 @@ class StudentsLoader
         $getStudents->execute();
         $students = $getStudents->fetchAll();
         foreach ($students as $student) {
-            $student = new Student($student['id'], $student['first_name'], $student['last_name'],$student['email'], $student['created_at'],$student['password']);
+            $student = new Student($student['id'], $student['first_name'], $student['last_name'],$student['email'], $student['created_at'],$student['password'],$student['image']);
             array_push($arrayStudents, $student);
         }
         $this->students = $arrayStudents;

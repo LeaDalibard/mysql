@@ -8,6 +8,7 @@ class AuthController
         $pdo = openConnection();
         date_default_timezone_set("Europe/Brussels");
 
+
         //-----------------------------------REGISTER
 
         //-----------------------------------Set session
@@ -24,6 +25,10 @@ class AuthController
         if (!isset($_SESSION["email"])) {
             $_SESSION["email"] = "";
         }
+        if (!isset($_SESSION["image"])) {
+            $_SESSION["image"] = "";
+        }
+
         if (!isset($_SESSION['valid'])) {
             $_SESSION['valid'] = false;
         }
@@ -70,12 +75,14 @@ class AuthController
         }
 
         if (isset($_POST['register']) && $message == "") {
-            $handle = $pdo->prepare('INSERT INTO student (first_name, last_name, email,created_at,password) VALUES (:first_name, :last_name, :email,:created_at, :password)');
+            $_SESSION["image"]=getAPI();
+            $handle = $pdo->prepare('INSERT INTO student (first_name, last_name, email,created_at,password,image) VALUES (:first_name, :last_name, :email,:created_at, :password, :image)');
             $handle->bindValue(':first_name', $_POST['first_name']);
             $handle->bindValue(':last_name', $_POST['last_name']);
             $handle->bindValue(':email', $_POST['email']);
             $handle->bindValue(':created_at', date('Y-m-d H:i'));
             $handle->bindValue(':password', password_hash($_POST['psw'], PASSWORD_DEFAULT));
+            $handle->bindValue(':image', $_SESSION["image"]);
             $handle->execute();
             $_SESSION["first_name"] = $_POST['first_name'];
             $_SESSION["last_name"] = $_POST['last_name'];
@@ -96,12 +103,13 @@ class AuthController
         if (isset ($_POST['login'])) {
             if (!empty($_POST['username'])) {
                 foreach ($students->getStudents() as $student) {
-                    if ($student->getEmail() == $_POSTgi['username']) {
+                    if ($student->getEmail() == $_POST['username']) {
                         $_SESSION["username"] = $_POST['username'];
                         $_SESSION["loginpsw"] = $student->getPassword();
                         $_SESSION["first_name"] = $student->getFirstname();
                         $_SESSION["last_name"] = $student->getLastname();
                         $_SESSION["email"] = $student->getEmail();
+                        $_SESSION["image"]=$student->getImage();
                     }
                 }
                 if (empty($_SESSION["username"])) {

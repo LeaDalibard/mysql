@@ -5,10 +5,10 @@ class Student
 {
     private int $id;
     private string $first_name,$last_name,$email, $created_at;
-    private $password;
+    private $password, $image;
 
 
-    public function __construct($id, $first_name, $last_name,$email, $created_at,$password)
+    public function __construct($id, $first_name, $last_name,$email, $created_at,$password,$image)
     {
         $this->id = $id;
         $this->first_name = $first_name;
@@ -16,6 +16,7 @@ class Student
         $this->email=$email;
         $this->created_at = $created_at;
         $this->password=$password;
+        $this->image = $image;
     }
 
     public function getId()
@@ -49,6 +50,12 @@ class Student
     public function getPassword()
     {
         return $this->password;
+    }
+
+
+    public function getImage()
+    {
+        return $this->image;
     }
 
 

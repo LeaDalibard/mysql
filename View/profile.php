@@ -18,7 +18,7 @@
 <section class="container">
 
     <div class="d-flex justify-content-center">
-        <img class="my-3 w-25 rounded-circle text-center p-2" src="../resources/profile-picture.png" alt="Profile picture">
+        <img class="my-3 w-25 rounded-circle text-center p-2" src="<?php echo $_SESSION["image"]; ?>" alt="Profile picture">
     </div>
     <div class="media-body text-center">
         <h5 class="mt-0"><?php echo $_SESSION["first_name"]." ".$_SESSION["last_name"]; ?></h5>

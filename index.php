@@ -12,7 +12,7 @@ session_start(); //Careful put session start on the first place in index
 require 'Model/connection.php';
 require 'Model/Student.php';
 require 'Model/StudentsLoader.php';
-
+require 'Model/Catimages.php';
 
 //include all your controllers here
 require 'Controller/HomepageController.php';
@@ -40,8 +40,8 @@ if (isset($_POST['home'])) {
     $controller = new AuthController();
 }
 
-var_dump($_SESSION);
 
-//$controller= new LoginController();
+
+
 
 $controller->render($_GET, $_POST);
