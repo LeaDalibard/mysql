@@ -16,6 +16,8 @@ class AuthController
         $messagelogin = "";
         $students = new StudentsLoader($pdo);
 
+        //----------------- Logged
+
         if (!isset($_SESSION["first_name"])) {
             $_SESSION["first_name"] = "";
         }
@@ -33,6 +35,7 @@ class AuthController
             $_SESSION['valid'] = false;
         }
 
+        //----------------- Register
 
         if (!isset($_SESSION["username"])) {
             $_SESSION["username"] = "";
@@ -40,10 +43,6 @@ class AuthController
         if (!isset($_SESSION["loginpsw"])) {
             $_SESSION["loginpsw"] = "";
         }
-        // if (!isset($_SESSION['login'])) {
-        //            $_SESSION['login'] = true;
-        //        }
-
 
         //-----------------------------------Required fields
 
@@ -66,7 +65,7 @@ class AuthController
             }
             //-----------------------------------    Check if password and password confirm are equal
 
-            if (!empty($_POST['psw']) && !empty($_POST['psw-repeat']) ){
+            if (!empty($_POST['psw']) && !empty($_POST['psw-repeat'])) {
                 if ($_POST['psw'] != $_POST['psw-repeat']) {
                     $message = "Password and Password confirm do not match, please enter your password again";
                 }
@@ -75,7 +74,7 @@ class AuthController
         }
 
         if (isset($_POST['register']) && $message == "") {
-            $_SESSION["image"]=getAPI();
+            $_SESSION["image"] = getAPI();
             $handle = $pdo->prepare('INSERT INTO student (first_name, last_name, email,created_at,password,image) VALUES (:first_name, :last_name, :email,:created_at, :password, :image)');
             $handle->bindValue(':first_name', $_POST['first_name']);
             $handle->bindValue(':last_name', $_POST['last_name']);
@@ -88,6 +87,7 @@ class AuthController
             $_SESSION["last_name"] = $_POST['last_name'];
             $_SESSION["email"] = $_POST['email'];
             $_SESSION['valid'] = true;
+            $_SESSION["logged"]=true;
             header('Location: index.php');
             exit();
         }
@@ -109,7 +109,7 @@ class AuthController
                         $_SESSION["first_name"] = $student->getFirstname();
                         $_SESSION["last_name"] = $student->getLastname();
                         $_SESSION["email"] = $student->getEmail();
-                        $_SESSION["image"]=$student->getImage();
+                        $_SESSION["image"] = $student->getImage();
                     }
                 }
                 if (empty($_SESSION["username"])) {
@@ -124,8 +124,9 @@ class AuthController
                     $_SESSION['login'] = false;
                 }
             }
-            if(empty($messagelogin)){
-                $_SESSION['login'] = true;
+            if (empty($messagelogin)) {
+                $_SESSION["logged"]=true;
+                $_SESSION['login'] =true;
                 header('Location: index.php');
                 exit();
             }

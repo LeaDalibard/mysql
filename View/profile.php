@@ -18,11 +18,11 @@
 <section class="container">
 
     <div class="d-flex justify-content-center">
-        <img class="my-3 w-25 rounded-circle text-center p-2" src="<?php echo $_SESSION["image"]; ?>" alt="Profile picture">
+        <img class="my-3 w-25 rounded-circle text-center p-2" src="<?php echo $_SESSION["profile_image"]; ?>" alt="Profile picture">
     </div>
     <div class="media-body text-center">
-        <h5 class="mt-0"><?php echo $_SESSION["first_name"]." ".$_SESSION["last_name"]; ?></h5>
-        <p><?php echo $_SESSION["email"]; ?></p>
+        <h5 class="mt-0"><?php echo $_SESSION["profile_first_name"]." ".$_SESSION["profile_last_name"]; ?></h5>
+        <p><?php echo $_SESSION["profile_email"]; ?></p>
     </div>
     <!-- <p><a href="index.php?page=profile">To profile page</a></p> -->
 

@@ -16,6 +16,7 @@
 
     <form method="post" action="index.php">
         <button type="submit" name="home" value="home" class="btn btn-primary">Homepage</button>
+        <button type="submit" name="logout" value="logout" class="btn btn-primary">Log out</button>
     </form>
 
         <!-- <a href="index.php" title="index"> -->

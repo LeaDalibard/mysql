@@ -1,4 +1,4 @@
-<!doctype html>
+
 <html lang="en">
 <head>
     <title>Homepage</title>
@@ -11,7 +11,14 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+<header class="mb-5">
+    <form method="post" action="index.php">
+        <button type="submit" name="logout" value="logout" class="btn btn-primary">Log out</button>
+    </form>
 
+    <!-- <a href="index.php" title="index"> -->
+
+</header>
 <section class="container">
 
     <table id="studentTable">
@@ -27,7 +34,7 @@
             <td><?php echo $student->getFirstName() ?></td>
             <td><?php echo $student->getLastName() ?></td>
             <td><?php echo $student->getEmail() ?></td>
-            <td><a href="profile.php?user=<?php echo $student->getId() ?>">Profile page</a></td>
+            <td><a href="index.php?user=<?php echo $student->getId() ?>">Profile page</a></td>
         </tr>
         <?php endforeach; ?>
     </table>

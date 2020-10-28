@@ -21,27 +21,36 @@ require 'Controller/ProfileController.php';
 require 'Controller/LoginController.php';
 require 'Controller/AuthController.php';
 
+$controller= new HomepageController();
 
-$controller = new AuthController();
+if(isset($_SESSION["logged"]) && $_SESSION["logged"]==false){
+    $controller= new AuthController();
+}
+
 
 if (isset($_SESSION['valid']) && $_SESSION['valid'] == true) {
-    $controller = new ProfileController();
+    $controller = new HomepageController();
 }
-
 
 if (isset($_SESSION['login']) && $_SESSION['login'] != false) {
+    $controller = new HomepageController();
+}
+
+if(isset($_GET['user'])&& isset($_SESSION['login'])&& $_SESSION['login'] == true) {
     $controller = new ProfileController();
 }
 
 
-if (isset($_POST['home'])) {
+if (isset($_POST['home'])&& isset($_SESSION['login'])&& $_SESSION['login'] == true ) {
+    $controller = new HomepageController();
+}
+
+if (isset($_POST['logout'])) {
     session_destroy();
     session_start();
     $controller = new AuthController();
 }
 
-
-
-
+var_dump($_SESSION);
 
 $controller->render($_GET, $_POST);
