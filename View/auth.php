@@ -15,7 +15,11 @@
 
 
 <section class="container">
+
     <h2> Register</h2>
+    <span class="error  text-danger"><?php if (isset($messagedelete)) {
+            echo $messagedelete;
+        }; ?></span>
     <span class="error  text-danger"><?php if (isset($message)) {
             echo $message;
         }; ?></span>
